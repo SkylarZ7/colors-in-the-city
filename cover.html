@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style1.css">
+  <style>
+    .heading {
+      width: 100%;
+      padding: 10px 0;
+      background: linear-gradient(90deg, rgba(255,0,0,0.3), rgba(255,165,0,0.3), rgba(255,255,0,0.3), rgba(0,128,0,0.3), rgba(0,0,255,0.3), rgba(75,0,130,0.3), rgba(238,130,238,0.3));
+      text-align: center;
+      font-size: 12px;
+      font-family: Arial, sans-serif;
+      color: white;
+      text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.8);
+    }
+
+    .heading .line {
+      margin: 2px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="heading">
+    <div class="line">Columbia GSAPP M.S. Computational Design Practices 2024 Summer</div>
+    <div class="line">Siqi Zhang Student Work Colloquium I</div>
+  </div>
+
+  <div class="sec">
+    <!-- This div will serve as the animated background -->
+  </div>
+  <div class="box">
+    <div id="pixel"></div>
+  </div>
+  <div class="rainbow-text">
+    Colors in the City
+  </div>
+
+  <script>
+    // Generate animated pixel boxes
+    for (let i = 1; i <= 352; i++) {
+      let box = document.createElement('div');
+      box.classList.add('box');
+      document.querySelector('.sec').appendChild(box);
+    }
+
+    function animateBx() {
+      let boxes = document.querySelectorAll('.sec .box');
+      let num = Math.floor(Math.random() * boxes.length);
+      boxes[num].classList.toggle('animate');
+    }
+
+    setInterval(animateBx, 200); // Adjust interval as needed
+
+    // Generate pixel effect for the image
+    let w = 30;  // Number of columns
+    let h = 20;  // Number of rows
+
+    function pixel() {
+      for (var i = 0; i < h; i++) {
+        for (var j = 0; j < w; j++) {
+          let span = document.createElement("span");
+          let random = Math.random() * 5;
+          let randomFixed = random.toFixed(2);
+
+          span.style.left = j * 20 + "px"; // Adjust spacing
+          span.style.top = i * 20 + "px";  // Adjust spacing
+          span.style.backgroundPosition = -j * 20 + "px " + -i * 20 + "px, center";
+          span.style.animationDelay = randomFixed + "s";
+
+          document.getElementById("pixel").appendChild(span);
+        }
+      }
+    }
+    pixel();
+
+    window.addEventListener('wheel', (event) => {
+      if (event.deltaY > 0) {
+        window.location.href = 'intro.html'; // Scroll down to navigate to newPage.html
+      }
+    });
+
+    // Automatically simulate mouse wheel event after 10 seconds
+    setTimeout(() => {
+      window.location.href = 'intro.html'; // Simulate scroll to navigate after 10 seconds
+    }, 10000); // 10000 milliseconds = 10 seconds
+
+  </script>
+</body>
+</html>
